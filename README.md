@@ -93,7 +93,7 @@ function printTwice(message:string):void {
 
 ##### The Never Type 
 
-The never type represents value that NEVER occur. We might use it to annotate a function that always throws an exception, or a function that never finishes executing.
+The never type represents the value that NEVER occurs. We might use it to annotate a function that always throws an exception or a function that never finishes executing.
 
 ```ts
 // Let's say you have a function that never finishes executing or rather an endless loop.
@@ -109,7 +109,84 @@ function makeError(msg:string):never{
   throw new Error(msg);
 }
 
-// Note : Don't confuse this with void, void returns undefined or null which is technically still a type of value. With never, a function doesn't even finish executing.
+// Note: Don't confuse this with void, void returns undefined or null which is technically still a type of value. With never, a function doesn't even finish executing.
 
+```
+
+#### Objects
+
+```ts
+function printName(person:{first:string, last:string}):void{
+  console.log(`${person.first} ${person.last}`);
+}
+printName({first:"Shubham", last:"Kadam"});
+```
+
+Objects can be typed by declaring what the object should look like in the annotation.
+
+```ts
+// More examples
+let coordinate : {x:number, y:number} = {x:34, y:45};
+
+// return type of object
+function randomCoordinate():{x:number,y:number} {
+  return {x:Math.random(), y:Math.random()};
+}
+```
+
+##### Type Alias 
+
+Instead of writing object types in an annotation, we can declare them separately in a type alias, which is simply the desired shape of the object.
+
+This allows us to make our code more readable and even reuse the types elsewhere in our code.
+
+```ts
+type point = {
+  x:number;
+  y:number;
+}
+
+let coordinate:point = {x:34,y:45};
+
+function randomCoordinate():point{
+  return {x : Math.random(), y:Math.random()};
+}
+
+function doublePoint(coordinate:point):point{
+  return {x : coordinate.x * 2 , y: coordinate.y *2}
+}
+```
+
+##### Nested Objects
+
+```ts
+type Song = {
+  title:string;
+  artist:string;
+  numStreams:number;
+  credits:{
+    producer:string;
+    writer:string
+  };
+};
+
+const mySong:Song ={
+  title:"birds",
+  artist:"Imagine Dragons",
+  numStreams:3435535,
+  credits:{
+    producer:"xyz",
+    writer:"abc"
+  }
+}
+
+function calculatePayout(song:Song):number{
+  return song.numStreams * 0.0033;
+}
+
+function printSong(song:Song):void{
+  console.log(`The title of the song is ${song.title}`);
+  console.log(`The artist of the song is ${song.artist}`);
+}
 ```
 

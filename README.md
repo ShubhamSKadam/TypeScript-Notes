@@ -308,3 +308,42 @@ function calculateTax(price: number | string, tax): number {
 console.log(calculateTax("$45", 2)); // 90
 console.log(calculateTax(45, 2)); // 90
 ```
+
+##### Union Types and Arrays
+
+```ts
+// Let's say we want to add multiple types of data in a variable, we can combine unions with arrays
+const stuff: (number | string)[] = [1, 2, "shubham"];
+
+// Another example, Note: refer to the previous code for types.
+const coordinates: (Point | Loc)[] = [];
+coordinates.push({ lat: 34.56, long: 56.768 });
+coordinates.push({ x: 34, y: 34 });
+```
+
+##### Literal Types
+
+Literal types are not just types - but the value themselves too!
+On it's own, that's not very helpful. But combine it with something like unions and you can have very fine-tuned type options for typescript to enforce.
+
+```ts
+let zero: 0 = 0; // one small example
+
+// example 1
+let mood: "Happy" | "Sad" | "Angry" = "Happy";
+mood = "Sad";
+mood = "Frustrated"; // will show an error because it's not one of the type.
+
+// example 2
+type DayOfWeek =
+  | "Monday"
+  | "Tuesday"
+  | "Wednesday"
+  | "Thursday"
+  | "Friday"
+  | "Saturday"
+  | "Sunday";
+
+let myDay: DayOfWeek = "Monday"; // this is valid
+myDay = "Wed"; // this is not valid and typescript will show an error
+```

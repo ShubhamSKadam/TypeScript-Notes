@@ -188,5 +188,50 @@ function printSong(song:Song):void{
   console.log(`The title of the song is ${song.title}`);
   console.log(`The artist of the song is ${song.artist}`);
 }
+
+// You can have optional property in your object
+type Coordinate = {
+  x:number;
+  y:number;
+  z?:number; // by placing '?' right after the property key will make the property optional.
+}
+```
+
+##### The readonly modifier
+
+The readonly modifier is a typescript keyword.
+
+```ts
+type User = {
+  readonly id:number; // Notice the readonly keyword which preceeds the id.
+  username:string,
+}
+
+let user:User ={
+  id:1,
+  username:'shubham'
+}
+
+console.log(user.id) // 1
+user.id = 343; // This will throw an error.
+```
+
+##### The Intersection Types
+
+```ts
+type Circle = {
+  radius : number;
+}
+
+type Colorful = {
+  color:string;
+}
+
+type ColorfulCircle = Circle & Colorful; // Notice we are intersecting two different types into a single type.
+
+const happyFace:ColorfulCircle = {
+  radius : 5,
+  color:'yellow',
+}
 ```
 

@@ -235,3 +235,29 @@ const happyFace:ColorfulCircle = {
 }
 ```
 
+#### Arrays
+
+```ts
+const activeUsers: string[] = []; // activeUsers is an array of strings
+activeUsers.push('Shubham');
+
+const ages:number[] = [45,34,23]; // ages is an array of numbers
+ages[2]=32;
+ages[1]='45'; // this will throw an error
+```
+
+##### More Array Syntax
+
+```ts
+// This is an alternate syntax for declaring arrays in typescript.
+const arr:Array<string> = ["hello","world"];
+const ages:Array<number> = [34,23];
+```
+
+##### Multidimensional Arrays
+
+```ts
+// Notice we add [][] 2 square brackets after the type to indicate it's 2d Array.
+const board:string[][] = [["x","0","x"],["x","x","0"],["0","x","x"]];
+```
+

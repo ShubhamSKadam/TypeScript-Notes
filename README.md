@@ -1,6 +1,6 @@
-## TypeScript
+# TypeScript
 
-#### Why TypeScript?
+### Why TypeScript?
 
 Take a look at the JS code below. It doesn't throw an error and gives us a valid output even when we perform invalid operations. To solve such problems TypeScript comes to our rescue by introducing types.
 
@@ -12,7 +12,7 @@ console.log(undefined * 340); // Nan
 - TS helps you show errors before runtime, i.e. it does something called static typing which means checking for any type errors before the execution of the program.
 - The same TS program is compiled into the JS program later.
 
-#### Type Annotation Basics
+## Type Annotation Basics
 
 1. String
 
@@ -47,7 +47,7 @@ myThing = false;
 myThing = 34;
 ```
 
-#### Delayed Initialisation and Inferred any
+### Delayed Initialisation and Inferred any
 
 ```ts
 const movies = ["blade runner", "source code", "rambo"];
@@ -61,7 +61,7 @@ for (let movie of movies) {
 }
 ```
 
-#### Functions
+## Functions
 
 ```ts
 // We define the type of parameters in the function.
@@ -77,7 +77,7 @@ function namaste(name: string): string {
 }
 ```
 
-##### Anonymous Function Contextual Typing
+### Anonymous Function Contextual Typing
 
 ```ts
 const colors = ["red", "black", "blue"];
@@ -85,7 +85,7 @@ const colors = ["red", "black", "blue"];
 colors.map((color) => color.toUpperCase()); // The color parameter in the map function will implicitly be string and not deafult to any.
 ```
 
-##### The Void Type
+### The Void Type
 
 ```ts
 // Notice that the function doesn't return anything, so it's better to explicitly set its return type to void.
@@ -95,7 +95,7 @@ function printTwice(message: string): void {
 }
 ```
 
-##### The Never Type
+### The Never Type
 
 The never type represents the value that NEVER occurs. We might use it to annotate a function that always throws an exception or a function that never finishes executing.
 
@@ -116,7 +116,7 @@ function makeError(msg: string): never {
 // Note: Don't confuse this with void, void returns undefined or null which is technically still a type of value. With never, a function doesn't even finish executing.
 ```
 
-#### Objects
+## Objects
 
 ```ts
 function printName(person: { first: string; last: string }): void {
@@ -137,7 +137,7 @@ function randomCoordinate(): { x: number; y: number } {
 }
 ```
 
-##### Type Alias
+### Type Alias
 
 Instead of writing object types in an annotation, we can declare them separately in a type alias, which is simply the desired shape of the object.
 
@@ -160,7 +160,7 @@ function doublePoint(coordinate: point): point {
 }
 ```
 
-##### Nested Objects
+### Nested Objects
 
 ```ts
 type Song = {
@@ -200,7 +200,7 @@ type Coordinate = {
 };
 ```
 
-##### The readonly modifier
+### The readonly modifier
 
 The readonly modifier is a typescript keyword.
 
@@ -219,7 +219,7 @@ console.log(user.id); // 1
 user.id = 343; // This will throw an error.
 ```
 
-##### The Intersection Types
+### The Intersection Types
 
 ```ts
 type Circle = {
@@ -238,7 +238,7 @@ const happyFace: ColorfulCircle = {
 };
 ```
 
-#### Arrays
+## Arrays
 
 ```ts
 const activeUsers: string[] = []; // activeUsers is an array of strings
@@ -249,7 +249,7 @@ ages[2] = 32;
 ages[1] = "45"; // this will throw an error
 ```
 
-##### More Array Syntax
+### More Array Syntax
 
 ```ts
 // This is an alternate syntax for declaring arrays in typescript.
@@ -257,7 +257,7 @@ const arr: Array<string> = ["hello", "world"];
 const ages: Array<number> = [34, 23];
 ```
 
-##### Multidimensional Arrays
+### Multidimensional Arrays
 
 ```ts
 // Notice we add [][] 2 square brackets after the type to indicate it's 2d Array.
@@ -268,7 +268,7 @@ const board: string[][] = [
 ];
 ```
 
-#### Unions
+## Unions
 
 Union types allows us to give a value a few different possible types.
 
@@ -291,7 +291,7 @@ let coordinates: Point | Loc = { x: 34, y: 58 };
 coordinates = { lat: 34.56, long: 56.768 };
 ```
 
-##### Type narrowing with Union types
+### Type narrowing with Union types
 
 Narrowing the Type is simply doing a type check before working with the value. Since unions allow multiple types of value, it's good to check what came through before working with it.
 
@@ -309,7 +309,7 @@ console.log(calculateTax("$45", 2)); // 90
 console.log(calculateTax(45, 2)); // 90
 ```
 
-##### Union Types and Arrays
+## Union Types and Arrays
 
 ```ts
 // Let's say we want to add multiple types of data in a variable, we can combine unions with arrays
@@ -321,7 +321,7 @@ coordinates.push({ lat: 34.56, long: 56.768 });
 coordinates.push({ x: 34, y: 34 });
 ```
 
-##### Literal Types
+### Literal Types
 
 Literal types are not just types - but the value themselves too!
 On it's own, that's not very helpful. But combine it with something like unions and you can have very fine-tuned type options for typescript to enforce.

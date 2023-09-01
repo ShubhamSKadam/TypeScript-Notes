@@ -267,3 +267,44 @@ const board: string[][] = [
   ["0", "x", "x"],
 ];
 ```
+
+#### Unions
+
+Union types allows us to give a value a few different possible types.
+
+We can create a union type by using a single | (pipe character) to seperate the types we want to include.
+
+```ts
+type Point = {
+  x: number;
+  y: number;
+};
+
+type Loc = {
+  lat: number;
+  long: number;
+};
+
+let coordinates: Point | Loc = { x: 34, y: 58 };
+
+// we can update the coordinates to use Loc
+coordinates = { lat: 34.56, long: 56.768 };
+```
+
+##### Type narrowing with Union types
+
+Narrowing the Type is simply doing a type check before working with the value. Since unions allow multiple types of value, it's good to check what came through before working with it.
+
+```ts
+function calculateTax(price: number | string, tax): number {
+  // Notice we are handling the type condition
+  if (typeof price === "string") {
+    price = price.replace("$", "");
+    price = parseFloat(price);
+  }
+  return price * tax;
+}
+
+console.log(calculateTax("$45", 2)); // 90
+console.log(calculateTax(45, 2)); // 90
+```

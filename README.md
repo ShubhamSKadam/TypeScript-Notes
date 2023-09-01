@@ -1,6 +1,6 @@
 ## TypeScript
 
-#### Why TypeScript ? 
+#### Why TypeScript? 
 
 Take a look at the JS code below. It doesn't throw an error and gives us a valid output even when we perform invalid operations. To solve such problems TypeScript comes to our rescue by introducing types.
 
@@ -26,7 +26,7 @@ movieTitle = 34; // assigning a number will throw an error.
 
 ```ts
 let phoneNo: number = 123456789;
-number = 'xy234' // assigning a string will thrown an error.
+number = 'xy234' // assigning a string will throw an error.
 ```
 3. Type Inference
 

@@ -324,7 +324,7 @@ coordinates.push({ x: 34, y: 34 });
 ### Literal Types
 
 Literal types are not just types - but the value themselves too!
-On it's own, that's not very helpful. But combine it with something like unions and you can have very fine-tuned type options for typescript to enforce.
+On its own, that's not very helpful. But combine it with something like unions and you can have very fine-tuned type options for typescript to enforce.
 
 ```ts
 let zero: 0 = 0; // one small example
@@ -347,3 +347,73 @@ type DayOfWeek =
 let myDay: DayOfWeek = "Monday"; // this is valid
 myDay = "Wed"; // this is not valid and typescript will show an error
 ```
+
+## Tuples
+
+Tuples are special type exclusive to TypeScript ( they don't exist in JS).
+Tuples are arrays of fixed lengths and ordered with specific types - like super rigid arrays.
+
+```ts
+// Creating a tuple with it's type definition
+let myTuple : [number,string];
+
+// Can assign it values per it specs
+myTuple = [10,'shubham'];
+
+myTuple = ['shubham',10]; ❌ Incorrect
+
+const color:[number,number,number] = [250,0,125];
+```
+
+```ts
+type HTTPResponse = [number,string]
+
+const goodResp:HTTPResponse = [200,"OK"]
+
+// limitation of tuple
+// we can push any type of data and it won't throw any kind of warning
+// we can also pop.
+```
+
+## Enums
+
+Enums allow us to define a set of named constants. We can give these constants numeric or string values.
+
+```ts
+enum Responses {
+  no, // 0
+  yes, // 1
+  maybe // 2
+}
+
+enum Responses {
+  no=2,
+  yes, // 3
+  maybe // 4
+}
+
+enum Responses {
+  no=2,
+  yes=10,
+  maybe=24 
+}
+```
+
+```ts
+// another example
+enum OrderStatus {
+  PENDING,
+  SHIPPED,
+  DELIVERED,
+  RETURNED,
+}
+
+const myStatus = OrderStatus.DELIVERED;
+
+function isDelivered(status:OrderStatus){
+  return status===OrderStatus.DELIVERED;
+}
+
+isDelivered(OrderStatus.RETURNED);
+```
+

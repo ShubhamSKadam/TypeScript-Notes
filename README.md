@@ -366,9 +366,9 @@ const color:[number,number,number] = [250,0,125];
 ```
 
 ```ts
-type HTTPResponse = [number,string]
+type HTTPResponse = [number, string];
 
-const goodResp:HTTPResponse = [200,"OK"]
+const goodResp: HTTPResponse = [200, "OK"];
 
 // limitation of tuple
 // we can push any type of data and it won't throw any kind of warning
@@ -383,19 +383,19 @@ Enums allow us to define a set of named constants. We can give these constants n
 enum Responses {
   no, // 0
   yes, // 1
-  maybe // 2
+  maybe, // 2
 }
 
 enum Responses {
-  no=2,
+  no = 2,
   yes, // 3
-  maybe // 4
+  maybe, // 4
 }
 
 enum Responses {
-  no=2,
-  yes=10,
-  maybe=24 
+  no = 2,
+  yes = 10,
+  maybe = 24,
 }
 ```
 
@@ -410,10 +410,116 @@ enum OrderStatus {
 
 const myStatus = OrderStatus.DELIVERED;
 
-function isDelivered(status:OrderStatus){
-  return status===OrderStatus.DELIVERED;
+function isDelivered(status: OrderStatus) {
+  return status === OrderStatus.DELIVERED;
 }
 
 isDelivered(OrderStatus.RETURNED);
 ```
 
+## Interfaces
+
+Interfaces serve almost the exact same purpose as type aliases ( with a slightly different syntax ).
+We can use them to create reusable, modular types that describe the shapes of objects.
+
+```ts
+interface Point {
+  x: number;
+  y: number;
+}
+
+const pt: Point = { x: 34, y: 45 };
+
+// Optional property and read only
+interface Person {
+  name: string;
+  readonly id: string; // making the id read only
+  age: number;
+  nickname?: string; // making nickname a optional property
+  // sayHi: () => string; // sayHi is a function that returns a string
+  // sayHi() : string ; // Another way of writing the function that returns string
+}
+```
+
+```ts
+interface Product {
+  name: string;
+  price: number;
+  applyDiscount(discount: number): number;
+}
+
+const shoes: Product = {
+  name: "Puma",
+  price: 100,
+  applyDiscount(amount: number) {
+    const newPrice = this.price * (1 - amount);
+    this.price = newPrice;
+    return this.price;
+  },
+};
+
+console.log(shoes.applyDiscount(0.4)); // 60
+```
+
+#### Interfaces can extend
+
+```ts
+interface Dog {
+  name: string;
+  age: number;
+}
+
+// This would throw an error in case of type alias, but here in interface it's not redeclaration, but it's just reopening/additional properties.
+interface Dog {
+  breed: string;
+  bark(): string;
+}
+
+const Rocky: Dog = {
+  name: "Rocky",
+  age: 0.5,
+  breed: "Australian Shepherd",
+  bark() {
+    return "Woof Woof!";
+  },
+};
+
+// Extending an existing Interface
+interface ServiceDog extends Dog {
+  job: "drug sniffer" | "bomb" | "guide dog";
+}
+
+const chewy: ServiceDog = {
+  name: "Chewy",
+  age: 3.6,
+  breed: "Lab",
+  bark() {
+    return "Bark";
+  },
+  job: "guide dog",
+};
+
+// We can have multiple extends
+
+interface Person {
+  name: string;
+}
+
+interface Employee {
+  readonly id: number;
+  email: string;
+}
+
+interface Enginer extends Person, Employee {
+  level: string;
+  languages: string[];
+}
+
+const shubham: Engineer = {
+  name: "Shubham",
+  id: 0909,
+  email: "shubhamskadam99@gmail.com",
+  level: "expert",
+  languages: ["C", "C++", "JS", "TS"],
+};
+```
